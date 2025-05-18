@@ -2,6 +2,31 @@
 <html lang="en">
 
 <head>
+    <script>
+        const originalFetch = window.fetch;
+        window.fetch = async function (...args) {
+            if (typeof args[0] === 'string') {
+                args[0] = fixedUrl(args[0]);
+            } else if (args[0] instanceof Request) {
+                args[0] = new Request(fixedUrl(args[0].url), args[0]);
+            }
+            return originalFetch.apply(this, args);
+        };
+    
+        const originalOpen = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function (method, url, ...rest) {
+            return originalOpen.call(this, method, fixedUrl(url), ...rest);
+        };
+    
+        function fixedUrl(url) {
+            if ((url+"").endsWith("Play.js")) {
+                return "https://cdn.jsdelivr.net/gh/gn-math/assets@main/296/Play.js";
+            } else if ((url+"").endsWith("Play.wasm")) {
+                return "https://cdn.jsdelivr.net/gh/gn-math/assets@main/296/Play.wasm";
+            }
+            return url;
+        }
+    </script>
     <base href="https://cdn.jsdelivr.net/gh/gn-math/assets@main/296/">
     <meta charset="utf-8" />
     <link rel="icon" href="favicon.ico" />
