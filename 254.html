@@ -1,51 +1,66 @@
-<!doctype html>
-<html lang="en-us">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <base href="https://cdn.jsdelivr.net/gh/genizy/web-port@main/balatro/">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width,user-scalable=no">
-    <title>Balatro</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #121212;
+      color: #f1f1f1;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 { color: #ff5555; }
+    pre {
+      background: #1e1e1e;
+      color: #dcdcdc;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 800px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+  </style>
 </head>
-
 <body>
-    <canvas id="canvas"></canvas>
-    <div id="spinner" class="pending"></div>
-    <script>
-        function mergeFiles(fileParts) {
-            return new Promise((resolve, reject) => {
-                let buffers = [];
+  <h1>Balatro has been removed due to a DMCA</h1>
+  <pre>
+Hi, I hope you're doing well.
 
-                function fetchPart(index) {
-                    if (index >= fileParts.length) {
-                        let mergedBlob = new Blob(buffers);
-                        let mergedFileUrl = URL.createObjectURL(mergedBlob);
-                        resolve(mergedFileUrl);
-                        return;
-                    }
-                    fetch(fileParts[index]).then((response) => response.arrayBuffer()).then((data) => {
-                        buffers.push(data);
-                        fetchPart(index + 1);
-                    }).catch(reject);
-                }
-                fetchPart(0);
-            });
-        }
+I am writing to request the takedown of software hoisted on Itch.io which distributes our intellectual property without our consent.
 
-        function getParts(file, start, end) {
-            let parts = [];
-            for (let i = start; i <= end; i++) {
-                parts.push(file + ".part" + i);
-            }
-            return parts;
-        }
-        mergeFiles(getParts("balatro", 1, 3)).then(url => {
-            let player = document.createElement("script");
-            player.src = "player.js?g=" + url;
-            document.body.appendChild(player);
-        })
-    </script>
+Copyrighted work: Balatro.
+
+Balatro is a PC/console/mobile game. Please find examples on Steam and Balatro's website.
+
+Infringing material: https://genizy.itch.io/balatro
+
+This is a webgl port of the game's demo, which is also protected by copyright and should only be available through Steam.
+
+Complaining party: Playstack Ltd.
+
+Contact:
+
+Telephone: [REDACTED]
+
+Address: [REDACTED]
+
+E-mail: [REDACTED]
+
+I confirm that Playstack Ltd. has a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law.
+
+I confirm that the information in the notification is accurate, and under penalty of perjury, that the complaining party is authorized to act on behalf of the owner of an exclusive right that is allegedly infringed
+
+Electronic signature: [REDACTED]
+
+Thank you for your support in removing content that unlawfully distributes our intellectual property.
+
+Kind regards,
+
+[REDACTED]
+  </pre>
 </body>
-
 </html>
