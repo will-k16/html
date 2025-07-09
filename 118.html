@@ -1,3 +1,6 @@
+<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
 <!DOCTYPE html>
 <html lang="en-us">
 
@@ -449,11 +452,12 @@ Unarchiver.loadedFormats = {};
 const originalFetch = window.fetch;
 
 window.fetch = function(input, options) {
-    if (typeof input === 'string' && input.includes("cdn.jsdelivr.net/gh/bubbls/youtube-playables")) {
-        input = input.replace(
-            "cdn.jsdelivr.net/gh/bubbls/youtube-playables@c5eefc5c13316b94c58e63cb5270b99a13c88fea/solar-smash/StreamingAssets/AssetBundles/WebGL/planets",
-            "rawcdn.githack.com/bubbls/youtube-playables/c5eefc5c13316b94c58e63cb5270b99a13c88fea/solar-smash/StreamingAssets/AssetBundles/WebGL/planets"
-        );
+    if (typeof input === 'string' && input.endsWith("AssetBundles/WebGL/planets")) {
+        input = 'https://rawcdn.githack.com/bubbls/youtube-playables/c5eefc5c13316b94c58e63cb5270b99a13c88fea/solar-smash/StreamingAssets/AssetBundles/WebGL/planets';
+        return originalFetch(input, options);
+    } else if (typeof input === 'string' && input.endsWith("AssetBundles/WebGL/planets2")) {
+        input = 'https://rawcdn.githack.com/bubbls/youtube-playables/c5eefc5c13316b94c58e63cb5270b99a13c88fea/solar-smash/StreamingAssets/AssetBundles/WebGL/planets2';
+        return originalFetch(input, options);
     }
 
     return originalFetch(input, options);
